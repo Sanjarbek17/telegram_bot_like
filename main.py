@@ -12,6 +12,7 @@ from telegram import (
 
 from dotenv import load_dotenv
 import os
+import json
 
 load_dotenv()
 token = os.getenv("token")
@@ -19,10 +20,26 @@ token = os.getenv("token")
 updater = Updater(token=token)
 dispatcher = updater.dispatcher
 
+f = open("count.json","r")
+
+try:
+    dct = json.loads(f.read())
+except:
+    dct = {"Like": 0, "Dislike" : 0}
+
+    
 g_dislike = 0
 d_like = 0
 
-lst = {}
+dct = {}
+
+f = open("text.txt","r")
+
+try:
+    dct = json.loads(f.read())
+except:
+    dct = {}
+
 
 def start(update: Update, context: CallbackContext):
     chat_id = update.message.chat_id
