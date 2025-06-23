@@ -90,7 +90,7 @@ def query(update: Update, context: CallbackContext):
             json_string = json.dumps({"like": d_like, "dislike": g_dislike})
             f.write(json_string)
 
-        dct[str(chat_id)] = current_choice,username
+        dct[str(chat_id)] = current_choice, username
 
 
         with open("text.json", "w") as f:
