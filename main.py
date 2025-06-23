@@ -62,6 +62,7 @@ def query(update: Update, context: CallbackContext):
     if update.callback_query:
         chat_id = update.callback_query.message.chat_id
         button = update.callback_query.data
+        username = update.callback_query.from_user.username
 
         if button == "1like":
             current_choice = "like"
@@ -89,7 +90,7 @@ def query(update: Update, context: CallbackContext):
             json_string = json.dumps({"like": d_like, "dislike": g_dislike})
             f.write(json_string)
 
-        dct[str(chat_id)] = current_choice
+        dct[str(chat_id)] = current_choice,username
 
 
         with open("text.json", "w") as f:
